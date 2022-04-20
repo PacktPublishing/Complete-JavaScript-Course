@@ -1,0 +1,34 @@
+<html>
+    <h1>Lets create a very simple promise</h1>
+    <!-- yep, its JavaScript, which means we need to wrap our code within the script tag  -->
+    <script>
+        // its a game show, where we need to roll the dice and WAIT for a result 
+    function rollDice() {
+    // we want to use a Promise, so lets use the constructor function
+        return new Promise((resolve, reject) => {
+            const delay = Math.floor(Math.random() * 1000);
+            const dice = Math.floor(Math.random() * 7);
+
+            // lets create a fake server call by using the setTimeout function
+            setTimeout(function() {
+                if(dice > 3) {
+                result = `Nice Roll | Delay: ${delay} | Dice: ${dice}`;
+                } else {
+                result = `Bad luck | Delay: ${delay} | Dice: ${dice}`;
+                }
+                // lets deal with successful result
+                resolve(result);
+                // lets deal with a failed promise 
+                reject('Error rolling the dice.');
+            }, delay);
+        });
+        }
+
+// Calling a Promise
+rollDice().then((res) => console.log("result: ", res)).catch((err) => console.log("err: ", err));
+    </script>
+
+</html>
+
+
+
